@@ -19,7 +19,7 @@
           <div class="line3"></div>
         </div>
         <ul class="nav-list">
-          <li><a href="#">iPhone</a></li>
+          <li><a href="pages/iphone.html">iPhone</a></li>
           <li><a href="#">Xiaomi</a></li>
           <li><a href="#">Realmi</a></li>
           <li><a href="#">Caixas de Som</a></li>
@@ -28,12 +28,54 @@
     </header>
     
     <script src="js/mobile-navbar.js"></script>
+  
+  </head>
   <!-- Fim do Menu -->
+
+</head>
+
+
+
+<br><br><br><br><br>
+<center>
+<div class="slideshow-container">
+  <div class="slide fade">
+    <img src="https://via.placeholder.com/1200x600?text=Imagem+1" alt="Imagem 1">
+  </div>
+  <div class="slide fade">
+    <img src="https://via.placeholder.com/1200x600?text=Imagem+2" alt="Imagem 2">
+  </div>
+  <div class="slide fade">
+    <img src="https://via.placeholder.com/1200x600?text=Imagem+3" alt="Imagem 3">
+  </div>
+</div>
+</center>
+<script>
+  let slideIndex = 0;
+  showSlides();
+
+  function showSlides() {
+    let slides = document.getElementsByClassName("slide");
+    for (let i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";  
+    }
+    slideIndex++;
+    if (slideIndex > slides.length) {slideIndex = 1}    
+    slides[slideIndex-1].style.display = "block";  
+    setTimeout(showSlides, 5000); // Muda a imagem a cada 5 segundos
+  }
+</script>
+
+
+
+
+
 
   <!-- Começo da Página -->
 
-</head>
-<br><br><br><br><br>
+
+
+<br>
 <div class="container">
   <div class="carousel" id="carousel">
     
