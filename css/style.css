@@ -9,7 +9,8 @@ body{
   background: -webkit-linear-gradient(45deg,  #000000 0%,#A55C1B 100%); 
   background: linear-gradient(45deg,  #000000 0%,#A55C1B 100%); 
   background-attachment: fixed;
-
+  color: #ffffff;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 
@@ -30,13 +31,13 @@ a:hover {
 }
 
 nav {
+  background-image: linear-gradient(to right , #211304, #693a10);
   position: fixed;
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
   font-family: system-ui, -apple-system, Helvetica, Arial, sans-serif;
-  background: #0000005b;
   height: 8vh;
   z-index: 1;
 }
@@ -125,9 +126,13 @@ nav {
 
 .slideshow-container {
   position: relative;
-  max-width: 1150px;
+  max-width: 80%;
   margin: auto;
   overflow: hidden;
+}
+
+.slideshow-container img{
+  max-width: 1200px;
 }
 
 .slide {
@@ -236,7 +241,7 @@ nav {
       max-width: 980px;
       margin: 0 auto;
       overflow-x: hidden;
-      color: #ffffff;
+      
       
   }
 
