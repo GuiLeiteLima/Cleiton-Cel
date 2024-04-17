@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cleiton Cel</title>
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+
+  <body>
+      <!-- Menu -->
+    <header>
+      <nav>
+        <a  href="../index.html"><img src="../img/Logo.png" class="logo" alt="Home"></a>
+        <div class="mobile-menu">
+          <div class="line1"></div>
+          <div class="line2"></div>
+          <div class="line3"></div>
+        </div>
+        <ul class="nav-list">
+          <li><a href="#">iPhone</a></li>
+          <li><a href="#">Xiaomi</a></li>
+          <li><a href="#">Realmi</a></li>
+          <li><a href="#">Caixas de Som</a></li>
+        </ul>
+      </nav>
+    </header>
+    
+    <script src="../js/mobile-navbar.js"></script>
+  <!-- Fim do Menu -->
+
+  <!-- Começo da Página -->
+
+</head>
+<br><br><br><br><br>
+<div class="container">
+  <div class="carousel" id="carousel">
+    
+      <div class="product">
+         <center> <img src="../img/i15pro.png" alt="Produto 1"></center>
+          <h2>iPhone 15 pro</h2>
+          <p>Descrição do Produto 1</p>
+          <span class="price">R$2000</span>
+          <button onclick="enviarMensagemWhatsapp('iPhone 15 Pro')">Whatsapp</button>
+      </div>
+
+      <div class="product">
+         <center> <img src="../img/i15.png" alt="Produto 2"></center>
+          <h2>iPhone 15</h2>
+          <p>Descrição do Produto 2</p>
+          <span class="price">R$2000</span>
+          <button onclick="enviarMensagemWhatsapp('iPhone 15')">Whatsapp</button>
+      </div>
+      <div class="product">
+        <center><img src="../img/i14.png" alt="Produto 2"></center>
+        <h2>iPhone 14</h2>
+        <p>Descrição do Produto 3</p>
+        <span class="price">R$2000</span>
+        <button onclick="enviarMensagemWhatsapp('iPhone 14')">Whatsapp</button>
+    </div>
+
+      
+  </div>
+</div>
+
+<div class="container">
+  <div class="carousel" id="carousel">
+    
+    <div class="product">
+      <center> <img src="../img/i11.png" alt="Produto 2"></center>
+       <h2>iPhone 11</h2>
+       <p>Descrição do Produto 5</p>
+       <span class="price">R$2000</span>
+       <button onclick="enviarMensagemWhatsapp('iPhone 11')">Whatsapp</button>
+   </div>
+
+      <div class="product">
+         <center> <img src="../img/i12.png" alt="Produto 2"></center>
+          <h2>iPhone 12</h2>
+          <p>Descrição do Produto 5</p>
+          <span class="price">R$2000</span>
+          <button onclick="enviarMensagemWhatsapp('iPhone 12')">Whatsapp</button>
+      </div>
+      <div class="product">
+        <center><img src="../img/ixr.png" alt="Produto 2"></center><br>
+        <h2>iPhone XR</h2>
+        <p>Descrição do Produto 6</p>
+        <span class="price">R$2000</span>
+        <button onclick="enviarMensagemWhatsapp('iPhone XR')">Whatsapp</button>
+    </div>
+  </div>
+</div>
+
+
+
+<script>
+  
+  function scrollCarousel(event) {
+      const carousel = document.getElementById('carousel');
+      carousel.scrollLeft += event.deltaY;
+  }
+
+  
+  document.getElementById('carousel').addEventListener('wheel', scrollCarousel);
+</script>
+
+<script>
+  function enviarMensagemWhatsapp(nomeProduto) {
+      var numeroWhatsApp = '75991009745';
+      var mensagem = 'Olá! Estou interessado no ' + nomeProduto;
+
+      var linkWhatsapp = 'https://api.whatsapp.com/send?phone=' + numeroWhatsApp + '&text=' + encodeURIComponent(mensagem);
+
+      window.open(linkWhatsapp, '_blank');
+  }
+</script>
+
+
+<footer>
+  <center>
+  <p>
+    <a href="http://maps.app.goo.gl/X1QmHi3awGj8RHcS8" target="_blank" rel="noopener noreferrer">Avenida Getúlio Vargas, 370,Centro.</a><br><br>
+    Paulo Afonso - BA <br><br>
+    Conheça também <a href="https://www.instagram.com/lojatimoficialpa?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==">@lojatimoficialpa</a></p></center>
+</footer>
+
+  </body>
+</html>
