@@ -36,17 +36,17 @@
 
 
 
-<br><br><br><br><br>
+<br><br><br><br>
 <center>
 <div class="slideshow-container">
   <div class="slide fade">
-    <img src="https://via.placeholder.com/1200x600?text=Imagem+1" alt="Imagem 1">
+    <img src="img/banner teste1.png" alt="Imagem 1">
   </div>
   <div class="slide fade">
-    <img src="https://via.placeholder.com/1200x600?text=Imagem+2" alt="Imagem 2">
+    <img src="img/banner teste2.png" alt="Imagem 2">
   </div>
   <div class="slide fade">
-    <img src="https://via.placeholder.com/1200x600?text=Imagem+3" alt="Imagem 3">
+    <img src="img/banner teste3.png" alt="Imagem 3">
   </div>
 </div>
 </center>
@@ -62,55 +62,19 @@
     slideIndex++;
     if (slideIndex > slides.length) {slideIndex = 1}    
     slides[slideIndex-1].style.display = "block";  
-    setTimeout(showSlides, 5000); // Muda a imagem a cada 5 segundos
+    setTimeout(showSlides, 6000); 
   }
 </script>
 
-
-
-
-
-
   <!-- Começo da Página -->
-
-
 
 <br>
 <div class="container">
-  <div class="carousel" id="carousel">
-    
-      <div class="product">
-         <center> <img src="img/i15pro.png" alt="Produto 1"></center>
-          <h2>iPhone 15 pro</h2>
-          <p>Descrição do Produto 1</p>
-          <span class="price">R$2000</span>
-          <button onclick="enviarMensagemWhatsapp('iPhone 15 Pro')">Whatsapp</button>
-      </div>
-
-      <div class="product">
-         <center> <img src="img/i15.png" alt="Produto 2"></center>
-          <h2>iPhone 15</h2>
-          <p>Descrição do Produto 2</p>
-          <span class="price">R$2000</span>
-          <button onclick="enviarMensagemWhatsapp('iPhone 15')">Whatsapp</button>
-      </div>
-      <div class="product">
-        <center><img src="img/i14.png" alt="Produto 2"></center>
-        <h2>iPhone 14</h2>
-        <p>Descrição do Produto 3</p>
-        <span class="price">R$2000</span>
-        <button onclick="enviarMensagemWhatsapp('iPhone 14')">Whatsapp</button>
-    </div>
-
-      
-  </div>
-</div>
-
-<div class="container">
+  <h3>Mais procurados:</h3>
   <div class="carousel" id="carousel">
     
     <div class="product">
-      <center> <img src="img/i11.png" alt="Produto 2"></center>
+      <center> <img src="../img/i11.png" alt="Produto 2"></center>
        <h2>iPhone 11</h2>
        <p>Descrição do Produto 5</p>
        <span class="price">R$2000</span>
@@ -118,14 +82,14 @@
    </div>
 
       <div class="product">
-         <center> <img src="img/i12.png" alt="Produto 2"></center>
+         <center> <img src="../img/i12.png" alt="Produto 2"></center>
           <h2>iPhone 12</h2>
           <p>Descrição do Produto 5</p>
           <span class="price">R$2000</span>
           <button onclick="enviarMensagemWhatsapp('iPhone 12')">Whatsapp</button>
       </div>
       <div class="product">
-        <center><img src="img/ixr.png" alt="Produto 2"></center><br>
+        <center><img src="../img/ixr.png" alt="Produto 2"></center><br>
         <h2>iPhone XR</h2>
         <p>Descrição do Produto 6</p>
         <span class="price">R$2000</span>
@@ -133,8 +97,6 @@
     </div>
   </div>
 </div>
-
-
 
 <script>
   
