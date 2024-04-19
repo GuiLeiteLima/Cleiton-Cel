@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Xiaomi / Realmi</title>
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+
+  <body>
+      <!-- Menu -->
+    <header>
+      <nav>
+        <a  href="../index.html"><img src="../img/Logo.png" class="logo" alt="Home"></a>
+        <div class="mobile-menu">
+          <div class="line1"></div>
+          <div class="line2"></div>
+          <div class="line3"></div>
+        </div>
+        <ul class="nav-list">
+          <li><a href="iphone.html">iPhone</a></li>
+          <li><a href="#">Caixas de Som</a></li>
+        </ul>
+      </nav>
+    </header>
+    
+    <script src="../js/mobile-navbar.js"></script>
+  <!-- Fim do Menu -->
+
+  <!-- Começo da Página -->
+
+</head>
+<br><br><br><br><br>
+<div class="container">
+  <div class="carousel" id="carousel">
+    
+      <div class="product">
+         <center> <img src="../img/redminote13pro5g.png" alt="Produto 1"></center><br><br>
+          <h2>Realmi Note 13 Pro 5g</h2>
+          <p>Descrição do Produto 1</p>
+          <span class="price">R$2000</span>
+          <button onclick="enviarMensagemWhatsapp('iPhone 15 Pro')">Whatsapp</button>
+      </div>
+
+      <div class="product">
+         <center> <img src="../img/pocox6.png" alt="Produto 2"></center><br><br>
+          <h2>Xiaomi Poco X6</h2>
+          <p>Descrição do Produto 2</p>
+          <span class="price">R$2000</span>
+          <button onclick="enviarMensagemWhatsapp('iPhone 15')">Whatsapp</button>
+      </div>
+      <div class="product">
+        <center><img src="../img/redmi note 12s.png" alt="Produto 2"></center><br><br>
+        <h2>Redmi Note 12 S</h2>
+        <p>Descrição do Produto 3</p>
+        <span class="price">R$2000</span>
+        <button onclick="enviarMensagemWhatsapp('iPhone 14')">Whatsapp</button>
+    </div>
+
+      
+  </div>
+</div>
+
+<div class="container">
+  <div class="carousel" id="carousel">
+    
+    <div class="product">
+      <center> <img src="../img/redmi13c.png" alt="Produto 2"></center><br><br>
+       <h2>Redmi 13 C 128gb</h2>
+       <p>Descrição do Produto 5</p>
+       <span class="price">R$2000</span>
+       <button onclick="enviarMensagemWhatsapp('iPhone 11')">Whatsapp</button>
+   </div>
+
+   <div class="product">
+    <center> <img src="../img/redmi13c.png" alt="Produto 2"></center><br><br>
+     <h2>Redmi 13 C 256gb</h2>
+     <p>Descrição do Produto 5</p>
+     <span class="price">R$2000</span>
+     <button onclick="enviarMensagemWhatsapp('iPhone 11')">Whatsapp</button>
+ </div>
+
+ <div class="product">
+    <center> <img src="../img/redmi13c.png" alt="Produto 2"></center><br><br>
+     <h2>Redmi 13 C 8/256gb</h2>
+     <p>Descrição do Produto 5</p>
+     <span class="price">R$2000</span>
+     <button onclick="enviarMensagemWhatsapp('iPhone 11')">Whatsapp</button>
+ </div>
+
+  </div>
+</div>
+<div class="container">
+    <div class="carousel" id="carousel">
+      
+        <div class="product">
+            <center><img src="../img/note13.png" alt="Produto 2"></center><br>
+            <h2>Redmi Note 13 6/128</h2>
+            <p>Descrição do Produto 6</p>
+            <span class="price">R$2000</span>
+            <button onclick="enviarMensagemWhatsapp('iPhone XR')">Whatsapp</button>
+        </div>
+  
+        <div class="product">
+            <center><img src="../img/redminote13.png" alt="Produto 2"></center><br>
+            <h2>Redmi Note 13 8/256</h2>
+            <p>Descrição do Produto 6</p>
+            <span class="price">R$2000</span>
+            <button onclick="enviarMensagemWhatsapp('iPhone XR')">Whatsapp</button>
+        </div>
+        <div class="product">
+          <center><img src="../img/redminote13pro.png" alt="Produto 2"></center><br>
+          <h2>iPhone XR</h2>
+          <p>Descrição do Produto 6</p>
+          <span class="price">R$2000</span>
+          <button onclick="enviarMensagemWhatsapp('iPhone XR')">Whatsapp</button>
+      </div>
+    </div>
+  </div>
+
+
+
+<script>
+  
+  function scrollCarousel(event) {
+      const carousel = document.getElementById('carousel');
+      carousel.scrollLeft += event.deltaY;
+  }
+
+  
+  document.getElementById('carousel').addEventListener('wheel', scrollCarousel);
+</script>
+
+<script>
+  function enviarMensagemWhatsapp(nomeProduto) {
+      var numeroWhatsApp = '75991009745';
+      var mensagem = 'Olá! Estou interessado no ' + nomeProduto;
+
+      var linkWhatsapp = 'https://api.whatsapp.com/send?phone=' + numeroWhatsApp + '&text=' + encodeURIComponent(mensagem);
+
+      window.open(linkWhatsapp, '_blank');
+  }
+</script>
+
+
+<footer>
+  <center>
+  <p>
+    <a href="http://maps.app.goo.gl/X1QmHi3awGj8RHcS8" target="_blank" rel="noopener noreferrer">Avenida Getúlio Vargas, 370,Centro.</a><br><br>
+    Paulo Afonso - BA <br><br>
+    Conheça também <a href="https://www.instagram.com/lojatimoficialpa?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==">@lojatimoficialpa</a></p></center>
+</footer>
+
+  </body>
+</html>
