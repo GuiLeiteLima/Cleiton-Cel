@@ -76,7 +76,7 @@ nav {
     position: absolute;
     top: 08vh;
     right: 0;
-    width: 105vw;
+    width: 100vw;
     height: 60vh;
     background: #0000005b;
     flex-direction: column;
@@ -93,6 +93,8 @@ nav {
     display: block;
     
   }
+
+
 }
 
 .nav-list.active {
@@ -126,13 +128,16 @@ nav {
 
 .slideshow-container {
   position: relative;
-  max-width: 80%;
+  max-width: 100%;
   margin: auto;
   overflow: hidden;
 }
 
 .slideshow-container img{
-  max-width: 1200px;
+  border-radius: 10px;
+  margin-bottom: 5%;
+  max-width: 1000px;
+  
 }
 
 .slide {
