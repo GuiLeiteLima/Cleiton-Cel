@@ -318,3 +318,56 @@ nav {
     padding: 30px;
     margin-top: 5%;
   }
+
+
+
+
+  /*endereço*/
+.bloco{
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 10px;
+}
+
+.endereco1{
+  background-color: #211304;
+  padding: 20px;
+  border-radius: 10px;
+
+}
+input[type=text]{
+  color: #fff;
+  padding: 10px 50px 10px 5px;
+  background-color: transparent;
+  border-top-color: transparent;
+  border-left: transparent;
+  border-right: transparent;
+  border-bottom-color: #ffffff;
+}
+
+input[type=text]::placeholder{
+  color: #fff;
+  font-size: medium;
+}
+
+button[type=submit]{
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 10px 70px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin-top: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+button[type=submit]:hover{
+  background-color: #4CAF50;
+  cursor: pointer;
+}
