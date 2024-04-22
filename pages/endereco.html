@@ -19,43 +19,19 @@
         <p>Descrição do produto.</p><br><br>
         <form id="orderForm">
             <div class="form-group">
-                <input type="text" id="name" name="name" placeholder="Nome" required>
+                <label for="state">Estado:</label>
+                <select id="state" name="state" required>
+                    <option value="" disabled selected>Selecione o estado</option>
+                </select>
+            </div><br><br>
+            <div class="form-group">
+                <label for="city">Cidade:</label>
+                <select id="city" name="city" required>
+                    <option value="" disabled selected>Selecione a cidade</option>
+                </select>
             </div><br><br>
             <div class="form-group">
                 <input type="text" id="address" name="address" placeholder="Endereço" required>
-            </div><br><br>
-            <div class="form-group">
-                <label for="state">Estado:</label>
-                <select id="state" name="state" required>
-                    <option value="" disabled selected>Estado</option>
-                    <option value="AC">AC</option>
-                    <option value="AL">AL</option>
-                    <option value="AP">AP</option>
-                    <option value="AM">AM</option>
-                    <option value="BA">BA</option>
-                    <option value="CE">CE</option>
-                    <option value="DF">DF</option>
-                    <option value="ES">ES</option>
-                    <option value="GO">GO</option>
-                    <option value="MA">MA</option>
-                    <option value="MT">MT</option>
-                    <option value="MS">MS</option>
-                    <option value="MG">MG</option>
-                    <option value="PA">PA</option>
-                    <option value="PB">PB</option>
-                    <option value="PR">PR</option>
-                    <option value="PE">PE</option>
-                    <option value="PI">PI</option>
-                    <option value="RJ">RJ</option>
-                    <option value="RN">RN</option>
-                    <option value="RS">RS</option>
-                    <option value="RO">RO</option>
-                    <option value="RR">RR</option>
-                    <option value="SC">SC</option>
-                    <option value="SP">SP</option>
-                    <option value="SE">SE</option>
-                    <option value="TO">TO</option>
-                </select>
             </div><br><br>
             <div class="form-group">
                 <label for="deliveryType">Retirada ou Entrega:</label>
@@ -71,36 +47,53 @@
 </div>
 
 <script>
-function getParameterByName(name, url) {
-  if (!url) url = window.location.href;
-  name = name.replace(/[\[\]]/g, '\\$&');
-  var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
-      results = regex.exec(url);
-  if (!results) return null;
-  if (!results[2]) return '';
-  return decodeURIComponent(results[2].replace(/\+/g, ' '));
+// Função para preencher o seletor de estados
+function populateStates() {
+  fetch('https://servicodados.ibge.gov.br/api/v1/localidades/estados')
+    .then(response => response.json())
+    .then(data => {
+      const stateSelect = document.getElementById('state');
+      data.forEach(state => {
+        const option = document.createElement('option');
+        option.value = state.sigla;
+        option.textContent = state.nome;
+        stateSelect.appendChild(option);
+      });
+    });
 }
 
-var productName = getParameterByName('produto');
-if (productName) {
-  document.getElementById('productName').innerText = "Produto: " + productName;
+// Função para preencher o seletor de cidades com base no estado selecionado
+function populateCities(stateCode) {
+  fetch(`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${stateCode}/municipios`)
+    .then(response => response.json())
+    .then(data => {
+      const citySelect = document.getElementById('city');
+      citySelect.innerHTML = '<option value="" disabled selected>Selecione a cidade</option>';
+      data.forEach(city => {
+        const option = document.createElement('option');
+        option.value = city.nome;
+        option.textContent = city.nome;
+        citySelect.appendChild(option);
+      });
+    });
 }
 
-document.getElementById('orderForm').addEventListener('submit', function(event) {
-  event.preventDefault();
-  var name = document.getElementById('name').value;
-  var address = document.getElementById('address').value;
-  var state = document.getElementById('state').value;
-  var deliveryType = document.getElementById('deliveryType').value;
+document.addEventListener('DOMContentLoaded', () => {
+  populateStates();
 
-  var message = "Olá! Estou interessado no produto "  + productName + ".\nMeu nome é :*" + name + "*.\nMeu endereço é :*" + address + "*.\nMeu estado é :*" + state + "*\nEscolhi :*" + deliveryType + "*.";
+  document.getElementById('state').addEventListener('change', event => {
+    const stateCode = event.target.value;
+    populateCities(stateCode);
+  });
 
-  var whatsappNumber = '75991009745';
-  
-  var whatsappLink = 'https://api.whatsapp.com/send?phone=' + whatsappNumber + '&text=' + encodeURIComponent(message);
-
-  window.location.href = whatsappLink;
+  // Obter nome do produto da URL e atualizar o elemento correspondente
+  const productName = new URLSearchParams(window.location.search).get('produto');
+  if (productName) {
+    document.getElementById('productName').innerText = "Produto: " + productName;
+  }
 });
+
+// Seu código existente...
 </script>
 
 <footer>
