@@ -1,40 +1,36 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="shortcut icon" type="imagex/png" href="img/Logo.png">
-    <title>Cleiton Cel</title>
-    <link rel="stylesheet" href="css/style.css" />
-  </head>
-
-  <body>
-      <!-- Menu -->
-    <header>
-      <nav>
-        <a  href="/"><img src="img/Logo.png" class="logo" alt="Home"></a>
-        <div class="mobile-menu">
-          <div class="line1"></div>
-          <div class="line2"></div>
-          <div class="line3"></div>
-        </div>
-        <ul class="nav-list">
-          <li><a href="pages/iphone.html">iPhone</a></li>
-          <li><a href="pages/xiaomi.html">Xiaomi / Realmi</a></li>
-          <li><a href="#">Caixas de Som</a></li>
-        </ul>
-      </nav>
-    </header>
-    
-    <script src="js/mobile-navbar.js"></script>
-  
-  </head>
-  <!-- Fim do Menu -->
-
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="shortcut icon" type="image/png" href="img/Logo.png">
+<title>Cleiton Cel</title>
+<link rel="stylesheet" href="css/style.css" />
 </head>
+<body>
+<!-- Menu -->
+<header>
+  <nav>
+    <a  href="/"><img src="img/Logo.png" class="logo" alt="Home"></a>
+    <div class="mobile-menu">
+      <div class="line1"></div>
+      <div class="line2"></div>
+      <div class="line3"></div>
+    </div>
+    <ul class="nav-list">
+      <li><a href="pages/iphone.html">iPhone</a></li>
+      <li><a href="pages/xiaomi.html">Xiaomi / Realmi</a></li>
+      <li><a href="pages/jbl.html">JBL</a></li>
+      <li><a href="#">Acessórios</a></li>
+    </ul>
+  </nav>
+</header>
 
-<br><br><br><br>
+<script src="js/mobile-navbar.js"></script>
+<!-- Fim do Menu -->
+
+<br><br><br><br><br>
 <center>
 <div class="slideshow-container">
   <div class="slide fade">
@@ -49,24 +45,23 @@
 </div>
 </center>
 <script>
-  let slideIndex = 0;
-  showSlides();
+let slideIndex = 0;
+showSlides();
 
-  function showSlides() {
-    let slides = document.getElementsByClassName("slide");
-    for (let i = 0; i < slides.length; i++) {
-      slides[i].style.display = "none";  
-    }
-    slideIndex++;
-    if (slideIndex > slides.length) {slideIndex = 1}    
-    slides[slideIndex-1].style.display = "block";  
-    setTimeout(showSlides, 6000); 
+function showSlides() {
+  let slides = document.getElementsByClassName("slide");
+  for (let i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";  
   }
+  slideIndex++;
+  if (slideIndex > slides.length) {slideIndex = 1}    
+  slides[slideIndex-1].style.display = "block";  
+  setTimeout(showSlides, 6000); 
+}
 </script>
 
-  <!-- Começo da Página -->
-
-<br>
+<!-- Começo da Página -->
+<br><br><br>
 <div class="container">
   <h3>Mais procurados:</h3>
   <div class="carousel" id="carousel">
@@ -76,7 +71,7 @@
        <h2>iPhone 11</h2>
        <p>Descrição do Produto 5</p>
        <span class="price">R$2000</span>
-       <button onclick="enviarMensagemWhatsapp('iPhone 11')">Whatsapp</button>
+       <button onclick="redirecionarParaEndereco('iPhone 11')">Comprar</button>
    </div>
 
       <div class="product">
@@ -84,39 +79,23 @@
           <h2>iPhone 12</h2>
           <p>Descrição do Produto 5</p>
           <span class="price">R$2000</span>
-          <button onclick="enviarMensagemWhatsapp('iPhone 12')">Whatsapp</button>
+          <button onclick="redirecionarParaEndereco('iPhone 12')">Comprar</button>
       </div>
       <div class="product">
         <center><img src="img/ixr.png" alt="Produto 2"></center><br>
         <h2>iPhone XR</h2>
         <p>Descrição do Produto 6</p>
         <span class="price">R$2000</span>
-        <button onclick="enviarMensagemWhatsapp('iPhone XR')">Whatsapp</button>
+        <button onclick="redirecionarParaEndereco('iPhone XR')">Comprar</button>
     </div>
   </div>
 </div>
 
-
 <script>
-  
-  function scrollCarousel(event) {
-      const carousel = document.getElementById('carousel');
-      carousel.scrollLeft += event.deltaY;
-  }
+function redirecionarParaEndereco(nomeProduto) {
 
-  
-  document.getElementById('carousel').addEventListener('wheel', scrollCarousel);
-</script>
-
-<script>
-  function enviarMensagemWhatsapp(nomeProduto) {
-      var numeroWhatsApp = '75991009745';
-      var mensagem = 'Olá! Estou interessado no ' + nomeProduto;
-
-      var linkWhatsapp = 'https://api.whatsapp.com/send?phone=' + numeroWhatsApp + '&text=' + encodeURIComponent(mensagem);
-
-      window.open(linkWhatsapp, '_blank');
-  }
+    window.location.href = "pages/endereco.html?produto=" + encodeURIComponent(nomeProduto);
+}
 </script>
 
 <footer>
@@ -127,5 +106,5 @@
     Conheça também <a href="https://www.instagram.com/lojatimoficialpa?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==">@lojatimoficialpa</a></p></center>
 </footer>
 
-  </body>
+</body>
 </html>
