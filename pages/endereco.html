@@ -47,70 +47,68 @@
 </div>
 
 <script>
-    // Função para preencher o seletor de estados
-    function populateStates() {
-      fetch('https://servicodados.ibge.gov.br/api/v1/localidades/estados')
-        .then(response => response.json())
-        .then(data => {
-          const stateSelect = document.getElementById('state');
-          data.forEach(state => {
-            const option = document.createElement('option');
-            option.value = state.sigla;
-            option.textContent = state.nome;
-            stateSelect.appendChild(option);
-          });
-        });
-    }
-    
-    // Função para preencher o seletor de cidades com base no estado selecionado
-    function populateCities(stateCode) {
-      fetch(`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${stateCode}/municipios`)
-        .then(response => response.json())
-        .then(data => {
-          const citySelect = document.getElementById('city');
-          citySelect.innerHTML = '<option value="" disabled selected>Selecione a cidade</option>';
-          data.forEach(city => {
-            const option = document.createElement('option');
-            option.value = city.nome;
-            option.textContent = city.nome;
-            citySelect.appendChild(option);
-          });
-        });
-    }
-    
-    document.addEventListener('DOMContentLoaded', () => {
-      populateStates();
-    
-      document.getElementById('state').addEventListener('change', event => {
-        const stateCode = event.target.value;
-        populateCities(stateCode);
-      });
-    
-      // Obter nome do produto da URL e atualizar o elemento correspondente
-      const productName = new URLSearchParams(window.location.search).get('produto');
-      if (productName) {
-        document.getElementById('productName').innerText = "Produto: " + productName;
-      }
-    
-      document.getElementById('orderForm').addEventListener('submit', function(event) {
-        event.preventDefault();
-        console.log("Formulário enviado!");
-        var name = document.getElementById('name').value;
-        var address = document.getElementById('address').value;
-        var state = document.getElementById('state').value;
-        var deliveryType = document.getElementById('deliveryType').value;
-    
-        var message = "Olá! Estou interessado no produto "  + productName + ".\nMeu nome é :*" + name + "*.\nMeu endereço é :*" + address + "*.\nMeu estado é :*" + state + "*\nEscolhi :*" + deliveryType + "*.";
-    
-        var whatsappNumber = '75991009745';
-      
-        var whatsappLink = 'https://api.whatsapp.com/send?phone=' + whatsappNumber + '&text=' + encodeURIComponent(message);
-    
-        console.log("Link do WhatsApp:", whatsappLink);
-        window.location.href = whatsappLink;
+// Função para preencher o seletor de estados
+function populateStates() {
+  fetch('https://servicodados.ibge.gov.br/api/v1/localidades/estados')
+    .then(response => response.json())
+    .then(data => {
+      const stateSelect = document.getElementById('state');
+      data.forEach(state => {
+        const option = document.createElement('option');
+        option.value = state.sigla;
+        option.textContent = state.nome;
+        stateSelect.appendChild(option);
       });
     });
-    </script>
+}
+
+// Função para preencher o seletor de cidades com base no estado selecionado
+function populateCities(stateCode) {
+  fetch(`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${stateCode}/municipios`)
+    .then(response => response.json())
+    .then(data => {
+      const citySelect = document.getElementById('city');
+      citySelect.innerHTML = '<option value="" disabled selected>Selecione a cidade</option>';
+      data.forEach(city => {
+        const option = document.createElement('option');
+        option.value = city.nome;
+        option.textContent = city.nome;
+        citySelect.appendChild(option);
+      });
+    });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  populateStates();
+
+  document.getElementById('state').addEventListener('change', event => {
+    const stateCode = event.target.value;
+    populateCities(stateCode);
+  });
+
+  // Obter nome do produto da URL e atualizar o elemento correspondente
+  const productName = new URLSearchParams(window.location.search).get('produto');
+  if (productName) {
+    document.getElementById('productName').innerText = "Produto: " + productName;
+  }
+
+  document.getElementById('orderForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    var name = document.getElementById('name').value;
+    var address = document.getElementById('address').value;
+    var state = document.getElementById('state').value;
+    var deliveryType = document.getElementById('deliveryType').value;
+
+    var message = "Olá! Estou interessado no produto "  + productName + ".\nMeu nome é :*" + name + "*.\nMeu endereço é :*" + address + "*.\nMeu estado é :*" + state + "*\nEscolhi :*" + deliveryType + "*.";
+
+    var whatsappNumber = '75991009745';
+  
+    var whatsappLink = 'https://api.whatsapp.com/send?phone=' + whatsappNumber + '&text=' + encodeURIComponent(message);
+
+    window.open(whatsappLink, '_blank');
+  });
+});
+</script>
 
 <footer>
     <center>
