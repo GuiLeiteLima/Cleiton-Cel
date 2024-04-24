@@ -10,113 +10,128 @@
     <header>
         <nav>
           <a href="../index.html"><img src="../img/Logo.png" class="logo" alt="Home"></a>
-
         </nav>
-      </header>
-<div class="bloco">
-    <div class="endereco1">
-        <h2 id="productName">Produto: Nome do Produto</h2>
-        <p>Descrição do produto.</p><br><br>
-        <form id="orderForm">
-            <div class="form-group">
-                <input type="text" id="customerName" name="customerName" placeholder="Nome do Cliente" required>
-            </div><br><br>
-            <div class="form-group">
-                <label for="state">Estado:</label>
-                <select id="state" name="state" required>
-                    <option value="" disabled selected>Selecione o estado</option>
-                </select>
-            </div><br><br>
-            <div class="form-group">
-                <label for="city">Cidade:</label>
-                <select id="city" name="city" required>
-                    <option value="" disabled selected>Selecione a cidade</option>
-                </select>
-            </div><br><br>
-            <div class="form-group">
-                <input type="text" id="address" name="address" placeholder="Endereço" required>
-            </div><br><br>
-            <div class="form-group">
-                <label for="deliveryType">Retirada ou Entrega:</label>
-                <select id="deliveryType" name="deliveryType" required>
-                    <option value="" disabled selected>Selecione</option>
-                    <option value="Retirada">Retirada</option>
-                    <option value="Entrega">Entrega</option>
-                </select>
-            </div><br><br>
-            <button type="submit">Enviar Pedido</button>
-        </form>
+    </header>
+    <div class="bloco">
+        <div class="endereco1">
+            <h2 id="productName">Produto: Nome do Produto</h2>
+            <p>Descrição do produto.</p><br><br>
+            <form id="orderForm">
+                <div class="form-group">
+                    <input type="text" id="customerName" name="customerName" placeholder="Nome do Cliente" required>
+                </div><br><br>
+                <div class="form-group">
+                    <label for="state">Estado:</label>
+                    <select id="state" name="state" required>
+                        <option value="" disabled selected>Selecione o estado</option>
+                    </select>
+                </div><br><br>
+                <div class="form-group">
+                    <label for="city">Cidade:</label>
+                    <select id="city" name="city" required>
+                        <option value="" disabled selected>Selecione a cidade</option>
+                    </select>
+                </div><br><br>
+                <div class="form-group">
+                    <input type="text" id="address" name="address" placeholder="Endereço" required>
+                </div><br><br>
+                <div class="form-group">
+                    <input type="number" id="houseNumber" name="houseNumber" placeholder="Número da Casa" required>
+                </div><br><br>
+                <div class="form-group">
+                    <label for="deliveryType">Retirada ou Entrega:</label>
+                    <select id="deliveryType" name="deliveryType" required>
+                        <option value="" disabled selected>Selecione</option>
+                        <option value="Retirada">Retirada</option>
+                        <option value="Entrega">Entrega</option>
+                    </select>
+                </div><br><br>
+                <div class="form-group">
+                    <label for="paymentMethod">Método de Pagamento:</label>
+                    <select id="paymentMethod" name="paymentMethod" required>
+                        <option value="" disabled selected>Pagamento</option>
+                        <option value="PIX">PIX</option>
+                        <option value="Cartão">Cartão</option>
+                        <option value="Boleto">Boleto</option>
+                        <option value="À Vista">À Vista</option>
+                    </select>
+                </div><br><br>
+                <button type="submit">Enviar Pedido</button>
+            </form>
+        </div>
     </div>
-</div>
 
-<script>
-function populateStates() {
-  fetch('https://servicodados.ibge.gov.br/api/v1/localidades/estados')
-    .then(response => response.json())
-    .then(data => {
-      const stateSelect = document.getElementById('state');
-      data.forEach(state => {
-        const option = document.createElement('option');
-        option.value = state.sigla;
-        option.textContent = state.nome;
-        stateSelect.appendChild(option);
-      });
+    <script>
+    function populateStates() {
+        fetch('https://servicodados.ibge.gov.br/api/v1/localidades/estados')
+            .then(response => response.json())
+            .then(data => {
+                const stateSelect = document.getElementById('state');
+                data.forEach(state => {
+                    const option = document.createElement('option');
+                    option.value = state.sigla;
+                    option.textContent = state.nome;
+                    stateSelect.appendChild(option);
+                });
+            });
+    }
+
+    function populateCities(stateCode) {
+        fetch(`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${stateCode}/municipios`)
+            .then(response => response.json())
+            .then(data => {
+                const citySelect = document.getElementById('city');
+                citySelect.innerHTML = '<option value="" disabled selected>Selecione a cidade</option>';
+                data.forEach(city => {
+                    const option = document.createElement('option');
+                    option.value = city.nome;
+                    option.textContent = city.nome;
+                    citySelect.appendChild(option);
+                });
+            });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        populateStates();
+
+        document.getElementById('state').addEventListener('change', event => {
+            const stateCode = event.target.value;
+            populateCities(stateCode);
+        });
+
+        const productName = new URLSearchParams(window.location.search).get('produto');
+        if (productName) {
+            document.getElementById('productName').innerText = "Produto: " + productName;
+        }
+
+        document.getElementById('orderForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            var customerName = document.getElementById('customerName').value;
+            var address = document.getElementById('address').value;
+            var houseNumber = document.getElementById('houseNumber').value;
+            var state = document.getElementById('state').value;
+            var city = document.getElementById('city').value;
+            var deliveryType = document.getElementById('deliveryType').value;
+            var paymentMethod = document.getElementById('paymentMethod').value;
+
+            var message = "Olá! Estou interessado no produto :*"  + productName + "*.\nNome do Cliente : *" + customerName + "*.\nMinha Cidade é :*" + city + "*.\nMeu Endereço é :*" + address + "*.\nNúmero da Casa: *" + houseNumber + "*.\nMeu Estado :*" + state + "*\nEscolhi :*" + deliveryType + "*.\nMétodo de Pagamento: *" + paymentMethod + "*.";
+
+            var whatsappNumber = '75991009745';
+
+            var whatsappLink = 'https://api.whatsapp.com/send?phone=' + whatsappNumber + '&text=' + encodeURIComponent(message);
+
+            window.open(whatsappLink, '_blank');
+        });
     });
-}
+    </script>
 
-function populateCities(stateCode) {
-  fetch(`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${stateCode}/municipios`)
-    .then(response => response.json())
-    .then(data => {
-      const citySelect = document.getElementById('city');
-      citySelect.innerHTML = '<option value="" disabled selected>Selecione a cidade</option>';
-      data.forEach(city => {
-        const option = document.createElement('option');
-        option.value = city.nome;
-        option.textContent = city.nome;
-        citySelect.appendChild(option);
-      });
-    });
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-  populateStates();
-
-  document.getElementById('state').addEventListener('change', event => {
-    const stateCode = event.target.value;
-    populateCities(stateCode);
-  });
-
-  const productName = new URLSearchParams(window.location.search).get('produto');
-  if (productName) {
-    document.getElementById('productName').innerText = "Produto: " + productName;
-  }
-
-  document.getElementById('orderForm').addEventListener('submit', function(event) {
-    event.preventDefault();
-    var customerName = document.getElementById('customerName').value;
-    var address = document.getElementById('address').value;
-    var state = document.getElementById('state').value;
-    var city = document.getElementById('city').value;
-    var deliveryType = document.getElementById('deliveryType').value;
-
-    var message = "Olá! Estou interessado no produto :*"  + productName + "*.\nNome do Cliente: " + customerName + ".\nMinha Cidade é :*" + city + "*.\nMeu Endereço é :*" + address + "*.\nMeu Estado :*" + state + "*\nEscolhi :*" + deliveryType + "*.";
-
-    var whatsappNumber = '75991009745';
-  
-    var whatsappLink = 'https://api.whatsapp.com/send?phone=' + whatsappNumber + '&text=' + encodeURIComponent(message);
-
-    window.open(whatsappLink, '_blank');
-  });
-});
-</script>
-
-<footer>
-    <center>
-    <p>
-      <a href="http://maps.app.goo.gl/X1QmHi3awGj8RHcS8" target="_blank" rel="noopener noreferrer">Avenida Getúlio Vargas, 370,Centro.</a><br><br>
-      Paulo Afonso - BA <br><br>
-      Conheça também <a href="https://www.instagram.com/lojatimoficialpa?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==">@lojatimoficialpa</a></p></center>
-  </footer>
+    <footer>
+        <center>
+            <p>
+                <a href="http://maps.app.goo.gl/X1QmHi3awGj8RHcS8" target="_blank" rel="noopener noreferrer">Avenida Getúlio Vargas, 370,Centro.</a><br><br>
+                Paulo Afonso - BA <br><br>
+                Conheça também <a href="https://www.instagram.com/lojatimoficialpa?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==">@lojatimoficialpa</a></p>
+        </center>
+    </footer>
 </body>
 </html>
